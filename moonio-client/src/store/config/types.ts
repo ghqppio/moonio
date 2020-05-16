@@ -20,7 +20,7 @@ export interface ConfigState {
   readonly data: Config;
   readonly loading: boolean;
   readonly loaded: boolean;
-  readonly error?: boolean | Error;
+  readonly error?: boolean | string;
 }
 
 export interface Fetch {
@@ -34,7 +34,7 @@ export interface FetchSuccess {
 
 export interface FetchError {
   type: actionTypes.FETCH_ERROR;
-  payload: Error;
+  payload: string;
 }
 
 export type ConfigActionsTypes = Fetch | FetchSuccess | FetchError;

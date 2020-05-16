@@ -1,4 +1,5 @@
-import { combineReducers } from "redux";
+import { combineReducers } from "redux-seamless-immutable";
+
 import promotions from "./promotions/reducers";
 import config from "./config/reducers";
 import { PromotionsState } from "./promotions/types";
@@ -11,7 +12,7 @@ export interface RootState extends StoreState {
   config: ConfigState;
 }
 
-const rootReducer = combineReducers<RootState>({
+const rootReducer = combineReducers({
   promotions,
   config,
 });

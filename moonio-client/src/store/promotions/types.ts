@@ -16,7 +16,7 @@ export interface PromotionsState {
   readonly totalPages: number;
   readonly loaded: boolean;
   readonly loading: boolean;
-  readonly error?: boolean | Error;
+  readonly error?: boolean | string;
 }
 
 export interface FetchPromotionsParams {
@@ -42,7 +42,7 @@ export interface FetchSuccess {
 
 export interface FetchError {
   type: actionTypes.FETCH_ERROR;
-  payload: Error;
+  payload: string;
 }
 
 export type PromotionActionsTypes = Fetch | FetchSuccess | FetchError;

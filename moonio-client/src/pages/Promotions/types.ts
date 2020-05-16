@@ -9,7 +9,7 @@ export interface PromotionsPageProps {
   totalPages: number;
   loading: boolean;
   loaded: boolean;
-  error?: boolean | Error;
+  error?: boolean | string;
   fetchPromotions: (data: FetchPromotionsParams) => void;
   initPromotions: () => void;
   fetchConfig: () => void;

@@ -20,7 +20,7 @@ export const fetchConfig: any = () => {
         (error: Error): FetchError => {
           return dispatch({
             type: actionTypes.FETCH_ERROR,
-            payload: error,
+            payload: error.message,
           });
         }
       );

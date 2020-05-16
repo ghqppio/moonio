@@ -32,6 +32,7 @@ class PromotionsPage extends Component<
     return (
       <div>
         <Header loading={this.props.loading} />
+        {this.props.error && <div className="text-center p-3">{this.props.error}</div>}
         {this.props.loaded && this.props.promotions.length ? (
           <PromotionsList
             data={this.props.promotions}
@@ -105,7 +106,6 @@ function mapStateToProps(state: RootState) {
     loaded: state.promotions.loaded,
     error: state.promotions.error || state.config.error,
     promotions: state.promotions.rows,
-    loadedPromotions: state.promotions.loaded,
     config: state.config.data,
     page: state.promotions.page,
     pageSize: state.promotions.pageSize,

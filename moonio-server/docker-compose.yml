@@ -1,0 +1,26 @@
+version: "3.0"
+
+services:
+  api:
+    build:
+      context: .
+    image: moonio-server
+    env_file: docker-compose.env
+    environment:
+      SERVICES: api
+      PORT: 3000
+    ports:
+      - 3000:3000
+
+  mongo:
+    image: mongo:latest
+    volumes:
+      - ./data/db:/data/db
+    ports:
+      - 27017:27017
+    command: mongod
+
+  nats:
+    image: nats
+    ports:
+      - 4222:4222

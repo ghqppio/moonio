@@ -1,0 +1,54 @@
+version: "3.0"
+
+services:
+  client:
+    build:
+      context: ./moonio-client
+    image: moonio-client
+    ports:
+      - 3001:80
+
+  api:
+    build:
+      context: ./moonio-server
+    image: moonio-server
+    env_file: docker-compose.env
+    environment:
+      SERVICES: services/api.service.ts
+    ports:
+      - 3000:3000
+    depends_on:
+      - nats
+
+  config:
+    build:
+      context: ./moonio-server
+    image: moonio-server
+    env_file: docker-compose.env
+    environment:
+      SERVICES: services/config/service.ts
+    depends_on:
+      - promotions
+      - nats
+
+  promotions:
+    build:
+      context: ./moonio-server
+    image: moonio-server
+    env_file: docker-compose.env
+    environment:
+      SERVICES: services/promotions/service.ts
+    depends_on:
+      - mongo
+      - nats
+
+  mongo:
+    image: mongo:latest
+    ports:
+      - 27017:27017
+    command: mongod
+
+  nats:
+    image: nats
+    ports:
+      - 4222:4222
